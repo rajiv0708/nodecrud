@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/css/font-awesome.min.css" /> -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 my-5">
+          <h2 class="alert alert-success text-center">Add Employee Details</h2>
+          <form method="post">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="name"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter the Name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="age" class="form-label">Age</label>
+              <input
+                type="text"
+                class="form-control"
+                id="age"
+                name="age"
+                placeholder="Enter the Age"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input
+                type="Phone"
+                class="form-control"
+                id="phone"
+                name="phone"
+                placeholder="Phone"
+              />
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-success form-control p-3">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-6 my-5">
+          <h2 class="alert alert-danger text-center">List of Employee</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data.forEach((item,index)=> { %>
+              <tr>
+                <th scope="row"><%= index + 1 %></th>
+                <td><%= item.name %></td>
+                <td><%= item.age %></td>
+                <td><%= item.phone %></td>
+                <td>
+                  <form
+                    action="/employee/edit/<%= item._id %>"
+                    method="get"
+                    class="din"
+                  >
+                    <button type="submit" class="btn">edit</button>
+                  </form>
+                  <form
+                    action="/employee/delete/<%= item._id %>"
+                    method="post"
+                    class="din"
+                  >
+                    <button type="submit" class="btn">delete</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
